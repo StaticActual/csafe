@@ -43,29 +43,20 @@ Thank you for using csafe.
 csafe is a program that scans for the usage of potentially dangerous functions 
 in c/c++ code and suggests replacements.
 
-To use it, you can either run
+To use it, run
 
 perl csafe.pl /name/of/c/c++/directory
-
-or
-
-perl csafe.pl myrepo.git
 
 Copyright Chandler Freeman, 2016
 END_HELP
 exit;
 }
 
-if (substr($directory, -4) eq ".git") {
-  print("HA! We can't do that whole git repo thing yet. Maybe soon though.\n");
-  exit;
-} else {
-  print("============ Running csafe v".$version." ============\n");
-  print("   -> directory: ".$directory."\n");
-  print("   -> datetime: ".localtime."\n");
-  print("   -> file types: .c, .cpp\n");
-  print("\n");
-}
+print("============ Running csafe v".$version." ============\n");
+print("   -> directory: ".$directory."\n");
+print("   -> datetime: ".localtime."\n");
+print("   -> file types: .c, .cpp\n");
+print("\n");
 
 # hash of unsafe functions and their suggested replacements
 my %unsafeFunctions = (
