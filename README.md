@@ -6,14 +6,14 @@ csafe is a Perl script that scans for the usage of potentially dangerous functio
 
 ## Usage:
 
-perl csafe.pl /name/of/c/c++/directory
+'''perl csafe.pl /name/of/c/c++/directory'''
 
 ## Example output:
 
 ============ Running csafe v1.0.0 ============
-   -> directory: /Users/user/Desktop/examplelib
-   -> datetime: Sun Sep 11 02:33:48 2016
-   -> file types: .c, .cpp
+-> directory: /Users/user/Desktop/examplelib
+-> datetime: Sun Sep 11 02:33:48 2016
+-> file types: .c, .cpp
 
 /src/convert/convert.c:524: Use of potentially dangerous function memcpy: Consider replacing with memcpy_s
 /src/convert/profiler.c:228: Use of potentially dangerous function sprintf: Consider replacing with snprintf
