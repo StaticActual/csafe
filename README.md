@@ -12,7 +12,7 @@ csafe is a Perl script that scans for the usage of potentially dangerous functio
 
 ============ Running csafe v1.0.0 ============
 
--> directory: /Users/user/Desktop/examplelib
+-> directory: /name/of/c/c++/directory
 
 -> datetime: Sun Sep 11 02:33:48 2016
 
