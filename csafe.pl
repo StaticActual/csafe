@@ -77,24 +77,30 @@ my %unsafeFunctions = (
     _splitpath => '_splitpath_s'
 );
 
-## main processing done here
+# main processing is done here
 my @found_files = ();
 my @dirs = ($directory);
-find( \&searchRecursively, @dirs );        ## fullpath name in $File::Find::name
+find(\&searchRecursively, @dirs);        
 
 sub searchRecursively {
+    # full filename in $File::Find::name
     next if $File::Find::name eq '.' or $File::Find::name eq '..';
+
+    # only process .c/.cpp files
     return if (substr($File::Find::name, -4) ne '.cpp' and substr($File::Find::name, -2) ne '.c');
 
     open my $file, '<', $File::Find::name or die "Error opening file: $!\n";
-        
+
     while(defined(my $line = <$file>) ) {
         while (my ($key, $value) = each(%unsafeFunctions)) {
 
-            # This regex expression attempts to ensure that the function call is actually the right function
+            # attempts to ensure that the line we are examining actually contains the dangerous
+            # function from the %unsafeFunctions hash
             if($line =~ /\s$key[(]/) {
                 my $outputLine = $File::Find::name;
-                my $find = quotemeta $directory; # escape regex metachars if present
+
+                # escape regex metachars if present
+                my $find = quotemeta $directory; 
                 $outputLine =~ s/$find//g;
                 $outputLine .= ":".$.;
                 $outputLine .= ": Use of potentially dangerous function ".$key; 
@@ -111,7 +117,7 @@ sub searchRecursively {
     close ($file);    
 }
 
-## display files - could be sorted if needed, etc
+# display files - could be sorted if needed, etc
 foreach my $file(@found_files) {
     print $file, "\n";
 }

@@ -34,6 +34,7 @@ csafe is a Perl script that scans for the usage of potentially dangerous functio
 
 ============ END REPORT csafe v1.0.0 ============
 
-## Contributions:
+## License:
 
-Copyright Chandler Freeman, 2016
+MIT License
+Copyright (c) 2016 Chandler Freeman
